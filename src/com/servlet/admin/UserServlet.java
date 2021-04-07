@@ -3,6 +3,7 @@ package com.servlet.admin;
 import java.io.IOException;
 import java.util.List;
 
+import javax.persistence.TypedQuery;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.dao.UserDAO;
 import com.entity.User;
+import com.utils.HibernateUtils;
 
 @WebServlet("/admin/users")
 public class UserServlet extends HttpServlet {
@@ -34,6 +36,12 @@ public class UserServlet extends HttpServlet {
 			limit = limitStr == null ? 10 : Integer.parseInt( limitStr ),
 			offset = limit * (page - 1);
 		List<User> listUser = this.userDAO.paginate(offset, limit);
+		
+//		Name Query
+//		TypedQuery<User> query = HibernateUtils.getSession()
+//			.createNamedQuery("User.getListActiveUser", User.class);
+//		
+//		List<User> listUser = query.getResultList();
 
 		request.setAttribute("page", page);
 		request.setAttribute("listUser", listUser);

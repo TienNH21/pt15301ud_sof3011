@@ -47,11 +47,11 @@ public class UserDAO {
 	public void update(User entity)
 	{
 		Session session = HibernateUtils.getSession();
+		session.clear();
 		
 		try {
 			session.beginTransaction();
 
-			session.clear();
 			session.update(entity);
 			
 			session.getTransaction().commit();
@@ -59,5 +59,43 @@ public class UserDAO {
 			e.printStackTrace();
 			session.getTransaction().rollback();
 		}
+	}
+	
+	public void delete(User entity)
+	{
+		Session session = HibernateUtils.getSession();
+		session.clear();
+
+		try {
+			session.beginTransaction();
+
+			session.delete(entity);
+
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+			session.getTransaction().rollback();
+		}
+	}
+	
+	public User login(String email, String password)
+	{
+		String hql = "SELECT obj FROM User obj "
+				+ "WHERE email = :email AND password = :password AND status = 1";
+
+		Query query = HibernateUtils.getSession().createQuery(hql);
+		query.setParameter(1, email);
+		query.setParameter(2, password);
+
+		try {
+			User entity = (User) query.getSingleResult();
+			
+			return entity;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 }

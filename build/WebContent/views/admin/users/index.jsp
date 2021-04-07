@@ -51,7 +51,9 @@
 					class="btn btn-primary">Update</a>
 	          </td>
 	          <td>
-	            <a class="btn btn-danger">Delete</a>
+	            <a
+	            	href="/PT15301_UD/admin/users/delete?id=${ user.id }"
+	            	class="btn btn-danger">Delete</a>
 	          </td>
 	        </tr>
       	</c:forEach>
