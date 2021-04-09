@@ -36,12 +36,6 @@ public class UserServlet extends HttpServlet {
 			limit = limitStr == null ? 10 : Integer.parseInt( limitStr ),
 			offset = limit * (page - 1);
 		List<User> listUser = this.userDAO.paginate(offset, limit);
-		
-//		Name Query
-//		TypedQuery<User> query = HibernateUtils.getSession()
-//			.createNamedQuery("User.getListActiveUser", User.class);
-//		
-//		List<User> listUser = query.getResultList();
 
 		request.setAttribute("page", page);
 		request.setAttribute("listUser", listUser);

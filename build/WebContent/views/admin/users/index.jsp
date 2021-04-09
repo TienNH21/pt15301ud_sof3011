@@ -9,7 +9,7 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 </head>
 <body>
-
+<a href="/PT15301_UD/logout" class="btn btn-default">Logout</a>
 <div class="col-8 offset-2">
   <div class="mt-5 row">
     <div class="col-6">

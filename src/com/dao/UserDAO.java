@@ -85,8 +85,8 @@ public class UserDAO {
 				+ "WHERE email = :email AND password = :password AND status = 1";
 
 		Query query = HibernateUtils.getSession().createQuery(hql);
-		query.setParameter(1, email);
-		query.setParameter(2, password);
+		query.setParameter("email", email);
+		query.setParameter("password", password);
 
 		try {
 			User entity = (User) query.getSingleResult();

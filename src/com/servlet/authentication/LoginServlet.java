@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.dao.UserDAO;
 import com.entity.User;
@@ -37,13 +38,19 @@ public class LoginServlet extends HttpServlet {
 			password = request.getParameter("password");
 
 		User entity = this.userDAO.login(email, password);
-		
+
 		if (entity != null) {
-			// Xử lý đăng nhập
+			HttpSession servletSession = request.getSession();
+
+			servletSession.setAttribute("user", entity);
+
+			response.sendRedirect(
+				request.getContextPath() + "/admin/users"
+			);
+		} else {
+			response.sendRedirect(
+				request.getContextPath() + "/login"
+			);
 		}
-		
-		response.sendRedirect(
-			request.getContentType() + "/login"
-		);
 	}
 }
