@@ -21,5 +21,4 @@ public class LogoutServlet extends HttpServlet {
 
 		response.sendRedirect("/PT15301_UD/login");
 	}
-
 }

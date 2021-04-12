@@ -25,7 +25,8 @@ public class LoginServlet extends HttpServlet {
 		HttpServletRequest request,
 		HttpServletResponse response
 	) throws ServletException, IOException {
-		request.getRequestDispatcher("/views/auth/login.jsp")
+		request.setAttribute("view", "/views/auth/login.jsp");
+		request.getRequestDispatcher("/views/layout.jsp")
 			.forward(request, response);
 	}
 

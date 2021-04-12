@@ -30,7 +30,7 @@ public class AuthenticationFilter implements Filter {
 		FilterChain chain
 	) throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
-		
+
 		HttpSession session = httpRequest.getSession();
 
 		User authUser = (User) session.getAttribute("user");
